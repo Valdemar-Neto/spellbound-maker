@@ -17,7 +17,7 @@ const LocationSection = () => {
           {/* Map */}
           <div className="rounded-lg overflow-hidden border border-border h-[400px] lg:h-auto">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.0!2d-45.38!3d-3.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92b4d3c0e1234567%3A0xabcdef!2sF%C3%AAnix+Pneus+Santa+In%C3%AAs!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.670616875107!2d-45.394222924296244!3d-3.662288996311721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92ca9daa1c13f24f%3A0x3c160b65252c0ef4!2sF%C3%AAnix%20Pneus%20Santa%20In%C3%AAs!5e0!3m2!1spt-BR!2sbr!4v1771873804461!5m2!1spt-BR!2sbr" 
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: "400px" }}
@@ -26,6 +26,7 @@ const LocationSection = () => {
               referrerPolicy="no-referrer-when-downgrade"
               title="Localização Fênix Pneus Santa Inês"
             />
+
           </div>
 
           {/* Info */}
