@@ -17,14 +17,14 @@ const LocationSection = () => {
           {/* Map */}
           <div className="rounded-lg overflow-hidden border border-border h-[400px] lg:h-auto">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0!2d-46.63!3d-23.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM23zMDAnMDAuMCJTIDQ2wrAzOCcwMC4wIlc!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.0!2d-45.38!3d-3.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92b4d3c0e1234567%3A0xabcdef!2sF%C3%AAnix+Pneus+Santa+In%C3%AAs!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: "400px" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localização Fênix Borracharia"
+              title="Localização Fênix Pneus Santa Inês"
             />
           </div>
 
@@ -40,8 +40,8 @@ const LocationSection = () => {
                     Endereço
                   </h3>
                   <p className="font-body text-muted-foreground">
-                    Rua Exemplo, 123 — Centro<br />
-                    Cidade - Estado, CEP 00000-000
+                    Av. Castelo Branco, 1901 — Sabbak<br />
+                    Santa Inês - MA, CEP 65300-550
                   </p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ const LocationSection = () => {
                     Horário de Funcionamento
                   </h3>
                   <p className="font-body text-muted-foreground">
-                    Segunda a Sábado: 7h às 18h<br />
+                    Segunda a Sábado: 7h30 às 18h30<br />
                     Emergências: 24 horas
                   </p>
                 </div>
@@ -70,8 +70,8 @@ const LocationSection = () => {
                     Telefone
                   </h3>
                   <p className="font-body text-muted-foreground">
-                    (00) 00000-0000<br />
-                    (00) 90000-0000 (WhatsApp)
+                    (98) 98470-1635<br />
+                    (98) 98470-1635 (WhatsApp)
                   </p>
                 </div>
               </div>

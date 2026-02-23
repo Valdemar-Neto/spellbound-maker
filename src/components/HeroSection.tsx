@@ -2,7 +2,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import { Phone, MessageCircle } from "lucide-react";
 
 const HeroSection = () => {
-  const whatsappUrl = "https://wa.me/5500000000000?text=Olá! Gostaria de um orçamento.";
+  const whatsappUrl = "https://wa.me/5598984701635?text=Olá! Gostaria de um orçamento.";
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -41,7 +41,7 @@ const HeroSection = () => {
             Chamar no WhatsApp
           </a>
           <a
-            href="tel:+5500000000000"
+            href="tel:+5598984701635"
             className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-display text-lg uppercase tracking-wider border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
           >
             <Phone className="w-5 h-5" />
