@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <Flame className="w-8 h-8 text-fire-orange" />
             <span className="font-display text-2xl font-bold uppercase gradient-fire-text">
-              Fênix
+              Fênix Borracharia
             </span>
           </div>
 
