@@ -42,7 +42,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-6 border-t border-border text-center">
           <p className="font-display text-lg text-fire-orange tracking-wider">
-            © {new Date().getFullYear()} AnkaiTech
+            © {new Date().getFullYear()} Lumen Tech
           </p>
         </div>
       </div>
