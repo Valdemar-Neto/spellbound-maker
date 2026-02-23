@@ -9,7 +9,7 @@ const ContactSection = () => {
     e.preventDefault();
     // Build WhatsApp message
     const text = `Olá! Meu nome é ${formData.name}. Telefone: ${formData.phone}. ${formData.message}`;
-    const url = `https://wa.me/5598999623417?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/5598981796941?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);

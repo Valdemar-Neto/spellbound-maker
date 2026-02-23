@@ -3,13 +3,13 @@ import { Wrench, RotateCcw, AlertTriangle, Truck, Gauge, Shield } from "lucide-r
 const services = [
   {
     icon: Wrench,
-    title: "Troca de Pneus",
-    description: "Troca rápida e segura para carros, motos e caminhões.",
+    title: "Venda e Troca de Pneus",
+    description: "Troca rápida e segura para carros, motos e caminhões com pneus novos e seminovos.",
   },
   {
     icon: RotateCcw,
-    title: "Balanceamento",
-    description: "Equilíbrio perfeito para maior durabilidade e conforto.",
+    title: "Vulcanização",
+    description: "Readequação perfeita de seus pneus com os melhores profissionais da região.",
   },
   {
     icon: AlertTriangle,
