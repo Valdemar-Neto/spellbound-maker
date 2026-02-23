@@ -36,13 +36,13 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="font-body text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Fênix Borracharia
+            ✦ Deus é Fiel ✦
           </p>
         </div>
 
         <div className="mt-8 pt-6 border-t border-border text-center">
           <p className="font-display text-lg text-fire-orange tracking-wider">
-            ✦ Deus é Fiel ✦
+            © {new Date().getFullYear()} VG_Solutions 
           </p>
         </div>
       </div>
