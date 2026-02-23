@@ -42,7 +42,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-6 border-t border-border text-center">
           <p className="font-display text-lg text-fire-orange tracking-wider">
-            © {new Date().getFullYear()} Lumen Tech
+            © {new Date().getFullYear()} Lumen Tech by Valdemar
           </p>
         </div>
       </div>

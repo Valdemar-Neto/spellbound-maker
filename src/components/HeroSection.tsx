@@ -24,7 +24,7 @@ const HeroSection = () => {
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase leading-tight mb-6 text-shadow-fire">
           <span className="gradient-fire-text">Fênix</span>
           <br />
-          <span className="text-foreground">Borracharia</span>
+          <span className="text-foreground">Pneus</span>
         </h1>
         <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
           Atendimento rápido, profissional e de confiança. Seu pneu em boas mãos, 

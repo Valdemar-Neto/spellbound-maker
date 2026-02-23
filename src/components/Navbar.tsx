@@ -30,7 +30,7 @@ const Navbar = () => {
         <a href="#inicio" className="flex items-center gap-2">
           <Flame className="w-7 h-7 text-fire-orange" />
           <span className="font-display text-xl font-bold uppercase gradient-fire-text">
-            Fênix
+            Fênix Pneus
           </span>
         </a>
 
