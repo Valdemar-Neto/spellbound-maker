@@ -56,8 +56,7 @@ const LocationSection = () => {
                     Horário de Funcionamento
                   </h3>
                   <p className="font-body text-muted-foreground">
-                    Segunda a Sábado: 7h30 às 18h30<br />
-                    Emergências: 24 horas
+                    Segunda a Sábado: 7h20 às 18h30<br />
                   </p>
                 </div>
               </div>
