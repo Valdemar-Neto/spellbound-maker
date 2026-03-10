@@ -13,8 +13,8 @@ const services = [
   },
   {
     icon: AlertTriangle,
-    title: "Emergência 24h",
-    description: "Atendimento emergencial a qualquer hora, onde você estiver.",
+    title: "Emergência ao seu alcance",
+    description: "Atendimento emergencial quando você precisar e onde você estiver.",
   },
   {
     icon: Truck,
