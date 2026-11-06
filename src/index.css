@@ -51,6 +51,10 @@
     --fire-yellow: 40 100% 60%;
     --dark-surface: 0 0% 7%;
     --dark-elevated: 0 0% 12%;
+
+    /* Motion (Emil Kowalski) */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   }
 }
 
@@ -69,6 +73,12 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
@@ -120,5 +130,43 @@
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
+  }
+
+  /* Feedback de toque em botões/CTAs */
+  .press {
+    transition: transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease;
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  /* Hover com movimento só em ponteiros finos (evita hover falso no toque) */
+  @media (hover: hover) and (pointer: fine) {
+    .lift {
+      transition: transform 200ms var(--ease-out), border-color 200ms ease, box-shadow 200ms ease;
+    }
+    .lift:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Pulso do pino no mapa */
+  .map-pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: map-pulse 2s var(--ease-out) infinite;
+  }
+
+  @keyframes map-pulse {
+    from { transform: scale(0.4); opacity: 0.6; }
+    to { transform: scale(2.2); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .map-pulse,
+    .animate-pulse-glow,
+    .animate-float {
+      animation: none;
+    }
   }
 }

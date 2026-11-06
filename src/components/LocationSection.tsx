@@ -1,82 +1,61 @@
-import { MapPin, Clock, Phone } from "lucide-react";
+import { MapPin, Clock, Phone, Navigation } from "lucide-react";
+import DotMap from "@/components/map/DotMap";
+import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/motion/Reveal";
+import { site } from "@/lib/site";
+
+const details = [
+  { icon: MapPin, title: "Endereço", lines: [site.address.street, site.address.city] },
+  { icon: Clock, title: "Horário de funcionamento", lines: [site.hours] },
+  { icon: Phone, title: "Telefone", lines: [`${site.displayPhone} (ligação e WhatsApp)`] },
+];
 
 const LocationSection = () => {
   return (
-    <section id="localizacao" className="py-20 md:py-28">
+    <section id="localizacao" className="py-20 md:py-28 overflow-hidden">
       <div className="container px-4">
-        <div className="text-center mb-16">
-          <p className="font-display text-sm tracking-[0.3em] uppercase text-fire-orange mb-3">
-            Onde estamos
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold uppercase">
-            Nossa <span className="gradient-fire-text">Localização</span>
-          </h2>
-        </div>
+        <SectionHeading eyebrow="Onde estamos" title="Nossa localização" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          {/* Map */}
-          <div className="rounded-lg overflow-hidden border border-border h-[400px] lg:h-auto">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.670616875107!2d-45.394222924296244!3d-3.662288996311721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92ca9daa1c13f24f%3A0x3c160b65252c0ef4!2sF%C3%AAnix%20Pneus%20Santa%20In%C3%AAs!5e0!3m2!1spt-BR!2sbr!4v1771873804461!5m2!1spt-BR!2sbr" 
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: "400px" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Localização Fênix Pneus Santa Inês"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+          <DotMap className="w-full aspect-square max-h-[640px]" />
 
-          </div>
-
-          {/* Info */}
-          <div className="flex flex-col gap-6">
-            <div className="bg-card border border-border rounded-lg p-8 flex-1">
-              <div className="flex items-start gap-4 mb-6">
+          <Reveal className="flex flex-col gap-8">
+            {details.map((item) => (
+              <div key={item.title} data-reveal className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg gradient-fire flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary-foreground" />
+                  <item.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-semibold uppercase text-foreground mb-1">
-                    Endereço
-                  </h3>
-                  <p className="font-body text-muted-foreground">
-                    Av. Castelo Branco, 1901 — Sabbak<br />
-                    Santa Inês - MA, CEP 65300-550
-                  </p>
+                  <h3 className="font-display text-lg font-semibold uppercase text-foreground mb-1">{item.title}</h3>
+                  {item.lines.map((line) => (
+                    <p key={line} className="font-body text-muted-foreground">
+                      {line}
+                    </p>
+                  ))}
                 </div>
               </div>
+            ))}
 
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-lg gradient-fire flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold uppercase text-foreground mb-1">
-                    Horário de Funcionamento
-                  </h3>
-                  <p className="font-body text-muted-foreground">
-                    Segunda a Sábado: 7h20 às 18h30<br />
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg gradient-fire flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold uppercase text-foreground mb-1">
-                    Telefone
-                  </h3>
-                  <p className="font-body text-muted-foreground">
-                    (98) 98470-1635<br />
-                    (98) 98470-1635 (WhatsApp)
-                  </p>
-                </div>
-              </div>
+            <div data-reveal className="flex flex-col sm:flex-row gap-3 pt-2">
+              <a
+                href={site.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="press inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-display uppercase tracking-wider gradient-fire text-primary-foreground"
+              >
+                <Navigation className="w-4 h-4" />
+                Traçar rota
+              </a>
+              <a
+                href={site.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="press inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-display uppercase tracking-wider border border-border text-foreground hover:border-primary transition-colors duration-200"
+              >
+                Abrir no Google Maps
+              </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
