@@ -1,12 +1,6 @@
 import { Flame } from "lucide-react";
-
-const navLinks = [
-  { href: "#inicio", label: "Início" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#sobre", label: "Sobre" },
-  { href: "#localizacao", label: "Localização" },
-  { href: "#contato", label: "Contato" },
-];
+import { navLinks } from "@/lib/site";
+import { scrollToHash } from "@/lib/gsap";
 
 const Footer = () => {
   return (
@@ -27,6 +21,10 @@ const Footer = () => {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToHash(link.href);
+                }}
                 className="font-body text-sm text-muted-foreground hover:text-fire-orange transition-colors"
               >
                 {link.label}

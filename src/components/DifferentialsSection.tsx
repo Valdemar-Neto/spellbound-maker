@@ -1,3 +1,5 @@
+import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/motion/Reveal";
 import { Clock, ThumbsUp, MapPin, Flame } from "lucide-react";
 
 const differentials = [
@@ -30,19 +32,12 @@ const DifferentialsSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-dark-elevated to-background" />
       
       <div className="container px-4 relative z-10">
-        <div className="text-center mb-16">
-          <p className="font-display text-sm tracking-[0.3em] uppercase text-fire-orange mb-3">
-            Por que nos escolher
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold uppercase">
-            Nossos <span className="gradient-fire-text">Diferenciais</span>
-          </h2>
-        </div>
+        <SectionHeading eyebrow="Por que nos escolher" title="Nossos diferenciais" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {differentials.map((item, i) => (
-            <div key={item.title} className="text-center group">
-              <div className="w-20 h-20 mx-auto rounded-full border-2 border-primary/30 flex items-center justify-center mb-6 group-hover:border-fire-orange group-hover:shadow-fire transition-all duration-300">
+        <Reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {differentials.map((item) => (
+            <div key={item.title} data-reveal className="text-center group">
+              <div className="w-20 h-20 mx-auto rounded-full border-2 border-primary/30 flex items-center justify-center mb-6 group-hover:border-fire-orange group-hover:shadow-fire transition-[border-color,box-shadow] duration-200">
                 <item.icon className="w-9 h-9 text-fire-orange" />
               </div>
               <h3 className="font-display text-lg font-semibold uppercase mb-2 text-foreground">
@@ -53,7 +48,7 @@ const DifferentialsSection = () => {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

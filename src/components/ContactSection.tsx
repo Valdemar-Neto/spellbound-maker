@@ -1,86 +1,111 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Send } from "lucide-react";
+import { toast } from "sonner";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/motion/Reveal";
+import { whatsappUrl } from "@/lib/site";
+
+const schema = z.object({
+  name: z.string().trim().min(2, "Informe seu nome."),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[\d\s()+-]{8,}$/, "Informe um telefone com DDD, ex.: (98) 98888-7777."),
+  message: z.string().trim().min(5, "Descreva o serviço que você precisa."),
+});
+
+type ContactValues = z.infer<typeof schema>;
+
+const fieldClass = "h-12 bg-card font-body text-base focus-visible:ring-primary";
+const labelClass = "font-display text-sm uppercase tracking-wider text-muted-foreground";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const form = useForm<ContactValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { name: "", phone: "", message: "" },
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Build WhatsApp message
-    const text = `Olá! Meu nome é ${formData.name}. Telefone: ${formData.phone}. ${formData.message}`;
-    const url = `https://wa.me/5598981796941?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank");
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: "", phone: "", message: "" });
+  const onSubmit = ({ name, phone, message }: ContactValues) => {
+    window.open(whatsappUrl(`Olá! Meu nome é ${name}. Telefone: ${phone}. ${message}`), "_blank");
+    toast.success("Mensagem pronta no WhatsApp", { description: "Confira o texto e toque em enviar." });
+    form.reset();
   };
 
   return (
     <section id="contato" className="py-20 md:py-28 bg-dark-surface">
       <div className="container px-4">
-        <div className="text-center mb-16">
-          <p className="font-display text-sm tracking-[0.3em] uppercase text-fire-orange mb-3">
-            Fale conosco
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold uppercase">
-            Entre em <span className="gradient-fire-text">Contato</span>
-          </h2>
-        </div>
+        <SectionHeading eyebrow="Fale conosco" title="Entre em contato" />
 
-        <div className="max-w-xl mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="font-display text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                Seu Nome
-              </label>
-              <input
-                type="text"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground font-body focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                placeholder="Digite seu nome"
+        <Form {...form}>
+          <Reveal className="max-w-xl mx-auto">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem data-reveal>
+                    <FormLabel className={labelClass}>Seu nome</FormLabel>
+                    <FormControl>
+                      <Input className={fieldClass} placeholder="Digite seu nome" autoComplete="name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-
-            <div>
-              <label className="font-display text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                Telefone
-              </label>
-              <input
-                type="tel"
-                required
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground font-body focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-                placeholder="(00) 00000-0000"
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem data-reveal>
+                    <FormLabel className={labelClass}>Telefone</FormLabel>
+                    <FormControl>
+                      <Input
+                        className={fieldClass}
+                        type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        placeholder="(98) 99999-9999"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-
-            <div>
-              <label className="font-display text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                Mensagem
-              </label>
-              <textarea
-                required
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground font-body focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none"
-                placeholder="Descreva o serviço que precisa..."
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem data-reveal>
+                    <FormLabel className={labelClass}>Mensagem</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        rows={4}
+                        className="bg-card font-body text-base resize-none focus-visible:ring-primary"
+                        placeholder="Descreva o serviço que precisa..."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-display text-lg uppercase tracking-wider gradient-fire text-primary-foreground shadow-fire hover:scale-[1.02] transition-transform duration-300"
-            >
-              <Send className="w-5 h-5" />
-              {submitted ? "Mensagem Enviada!" : "Enviar via WhatsApp"}
-            </button>
-          </form>
-        </div>
+              <button
+                type="submit"
+                data-reveal
+                className="press w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-display text-lg uppercase tracking-wider gradient-fire text-primary-foreground shadow-fire"
+              >
+                <Send className="w-5 h-5" />
+                Enviar pelo WhatsApp
+              </button>
+            </form>
+          </Reveal>
+        </Form>
       </div>
     </section>
   );
