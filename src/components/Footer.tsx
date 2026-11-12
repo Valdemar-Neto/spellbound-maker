@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { contatos, site, telefoneHref } from "@/lib/site";
 
 const Footer = () => (
   <footer className="border-t border-border">
@@ -13,9 +13,11 @@ const Footer = () => (
         </span>
       </div>
       <div className="flex flex-col gap-1.5">
-        <a href={site.phoneHref} className="link">
-          {site.displayPhone}
-        </a>
+        {contatos.map((c) => (
+          <a key={c.id} href={telefoneHref(c)} className="link">
+            {c.nome}: {c.telefone}
+          </a>
+        ))}
         <span>{site.hours}</span>
         <span>Site por Lumen Tech</span>
       </div>

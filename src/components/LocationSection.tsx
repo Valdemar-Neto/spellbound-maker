@@ -1,5 +1,6 @@
 import DotMap from "@/components/map/DotMap";
-import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
+import { contatos, site, telefoneHref } from "@/lib/site";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 const LocationSection = () => (
   <section id="onde" aria-labelledby="t-onde" className="theme-paper bg-background text-foreground">
@@ -17,11 +18,13 @@ const LocationSection = () => (
         <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 text-base">
           <dt className="text-muted-foreground">Horário</dt>
           <dd className="m-0 font-semibold">{site.hours}</dd>
-          <dt className="text-muted-foreground">Telefone</dt>
-          <dd className="m-0 font-semibold">
-            <a href={site.phoneHref} className="underline underline-offset-2">
-              {site.displayPhone}
-            </a>
+          <dt className="text-muted-foreground">Telefones</dt>
+          <dd className="m-0 flex flex-col font-semibold">
+            {contatos.map((c) => (
+              <a key={c.id} href={telefoneHref(c)} className="underline underline-offset-2">
+                {c.telefone} <span className="font-normal text-muted-foreground">{c.nome.split(" ")[0]}</span>
+              </a>
+            ))}
           </dd>
         </dl>
         <div className="flex flex-wrap gap-3">
@@ -33,14 +36,12 @@ const LocationSection = () => (
           >
             Abrir no Google Maps
           </a>
-          <a
-            href={whatsappUrl(whatsappMessages.geral)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ContatoButton
+            acao="whatsapp"
             className="press flex min-h-[52px] items-center rounded-full border-2 border-foreground px-[22px] font-semibold"
           >
             Pedir a localização
-          </a>
+          </ContatoButton>
         </div>
       </div>
 

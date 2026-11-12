@@ -2,11 +2,15 @@ import { lazy, Suspense, useCallback, useMemo, useRef, useState } from "react";
 import { MapPin } from "lucide-react";
 import tireImage from "@/assets/pneu-fenix.webp";
 import { WhatsAppIcon } from "@/components/brand";
+import { Chip } from "@/components/form/fields";
+import PedidoFechadoCard from "@/components/PedidoFechadoCard";
 import { gsap, useGSAP, prefersReducedMotion, EASE_OUT } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useStatusAtendimento } from "@/hooks/use-status-atendimento";
-import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
+import { mensagemHero, TEMAS_HERO, type TemaHeroId } from "@/lib/mensagem";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 const HeroScene = lazy(() => import("@/components/three/HeroScene"));
 
@@ -31,12 +35,19 @@ const HeroSection = ({ tireText }: HeroSectionProps) => {
   const [sceneReady, setSceneReady] = useState(false);
   const onSceneReady = useCallback(() => setSceneReady(true), []);
   const status = useStatusAtendimento();
+  const [tema, setTema] = useState<TemaHeroId | null>(null);
 
   // Momento orquestrado da página: a entrada do hero.
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
-      gsap.from(".hero-reveal", { opacity: 0, y: 16, duration: 0.9, ease: EASE_OUT, stagger: 0.07 });
+      gsap.from(".hero-reveal", {
+        opacity: 0,
+        y: 16,
+        duration: 0.9,
+        ease: EASE_OUT,
+        stagger: 0.07,
+      });
     },
     { scope: ref },
   );
@@ -96,16 +107,29 @@ const HeroSection = ({ tireText }: HeroSectionProps) => {
             para carro, moto e caminhão.
           </p>
 
+          <div role="group" aria-labelledby="t-precisa" className="hero-reveal flex flex-col gap-2.5">
+            <span id="t-precisa" className="text-[15px] font-semibold text-ink-soft">
+              Do que você precisa?{" "}
+              <span className="font-normal text-muted-foreground">Opcional, já vai na mensagem</span>
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {TEMAS_HERO.map((t) => (
+                <Chip key={t.id} ativo={tema === t.id} onClick={() => setTema(tema === t.id ? null : t.id)}>
+                  {t.rotulo}
+                </Chip>
+              ))}
+            </div>
+          </div>
+
           <div className="hero-reveal flex flex-wrap gap-3">
-            <a
-              href={whatsappUrl(whatsappMessages.geral)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContatoButton
+              acao="whatsapp"
+              mensagem={mensagemHero(tema)}
               className="press flex min-h-[60px] items-center gap-2.5 rounded-full bg-fire-orange px-7 text-lg font-bold text-background"
             >
               <WhatsAppIcon className="h-5 w-5" />
               Chamar no WhatsApp
-            </a>
+            </ContatoButton>
             <a
               href={site.directionsUrl}
               target="_blank"
@@ -117,18 +141,34 @@ const HeroSection = ({ tireText }: HeroSectionProps) => {
             </a>
           </div>
 
+          <p className="hero-reveal -mt-3 mb-0 text-[15px] text-muted-foreground">
+            Sem cadastro. A resposta vem no seu WhatsApp.{" "}
+            <a
+              href="#mensagem"
+              className="link inline-flex min-h-11 items-center font-semibold underline underline-offset-4"
+            >
+              Prefere detalhar? Monte sua mensagem
+            </a>
+          </p>
+
           <div className="hero-reveal flex flex-wrap items-center gap-x-6 gap-y-1 text-[15px] text-muted-foreground">
             <span>
               {site.address.street}, {site.address.district}
             </span>
             <span>{site.hours}</span>
-            <a
-              href={site.phoneHref}
+            <ContatoButton
+              acao="ligar"
               className="inline-flex min-h-11 items-center font-semibold text-foreground underline underline-offset-4"
             >
-              Ligar {site.displayPhone}
-            </a>
+              Ligar para a Fênix
+            </ContatoButton>
           </div>
+
+          {!status.aberto && (
+            <div className="hero-reveal">
+              <PedidoFechadoCard retorno={status.retorno} />
+            </div>
+          )}
         </div>
       </div>
     </section>

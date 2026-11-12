@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP, prefersReducedMotion, EASE_OUT } from "@/lib/gsap";
-import { whatsappMessages, whatsappUrl } from "@/lib/site";
+import { whatsappMessages } from "@/lib/site";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 // Oito barras de sulco crescentes; as cinco primeiras acesas = 5 mm de 8 mm.
 const SULCO_MM = 5;
@@ -88,14 +89,13 @@ const SeminovosSection = () => {
             ))}
           </ul>
           <div>
-            <a
-              href={whatsappUrl(whatsappMessages.seminovos)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContatoButton
+              acao="whatsapp"
+              mensagem={whatsappMessages.seminovos}
               className="press inline-flex min-h-14 items-center rounded-full bg-fire-orange px-[26px] font-bold text-background"
             >
               Pedir fotos dos seminovos
-            </a>
+            </ContatoButton>
           </div>
         </div>
       </div>

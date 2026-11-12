@@ -4,9 +4,6 @@ export const site = {
   brand: "Fênix",
   tagline: "Pneus e Borracharia",
   motto: "Deus é Fiel",
-  whatsappNumber: "5598981796941",
-  phoneHref: "tel:+5598981796941",
-  displayPhone: "(98) 98179-6941",
   address: {
     street: "Av. Castelo Branco, 1901",
     district: "Sabbak",
@@ -17,7 +14,11 @@ export const site = {
   // Atendimento fora da loja (delivery) é cobrado à parte; o valor é combinado no contato.
   deliveryFee: "O delivery tem taxa de serviço.",
   // Mesmo horário em dados: dias (0 = domingo) e minutos desde 0h, hora local (UTC-3).
-  openingHours: { dias: [1, 2, 3, 4, 5, 6], abre: 7 * 60 + 20, fecha: 18 * 60 + 30 },
+  openingHours: {
+    dias: [1, 2, 3, 4, 5, 6],
+    abre: 7 * 60 + 20,
+    fecha: 18 * 60 + 30,
+  },
   // [longitude, latitude]
   coordinates: [-45.3942, -3.6623] as [number, number],
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=F%C3%AAnix%20Pneus%20Santa%20In%C3%AAs",
@@ -26,8 +27,19 @@ export const site = {
   )}`,
 };
 
-export const whatsappUrl = (text: string) =>
-  `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
+// Quem atende a Fênix por WhatsApp e telefone. Todo botão de contato deixa a
+// pessoa escolher entre os dois (ver components/contato). Flávio vem primeiro.
+export const contatos = [
+  { id: "flavio", nome: "Flávio Fênix", numero: "5598984701635", telefone: "(98) 98470-1635" },
+  { id: "anna", nome: "Anna Luzia Fênix", numero: "5598981796941", telefone: "(98) 98179-6941" },
+] as const;
+
+export type Contato = (typeof contatos)[number];
+
+export const whatsappUrl = (text: string, contato: Contato = contatos[0]) =>
+  `https://wa.me/${contato.numero}?text=${encodeURIComponent(text)}`;
+
+export const telefoneHref = (contato: Contato) => `tel:+${contato.numero}`;
 
 // Mensagens pré-preenchidas do WhatsApp, uma por intenção.
 export const whatsappMessages = {
@@ -41,5 +53,6 @@ export const navLinks = [
   { href: "#pneus", label: "Pneus" },
   { href: "#servicos", label: "Serviços" },
   { href: "#onde", label: "Como chegar" },
+  { href: "#mensagem", label: "Mensagem" },
   { href: "#duvidas", label: "Dúvidas" },
 ];

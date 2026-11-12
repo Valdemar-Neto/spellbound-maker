@@ -1,5 +1,6 @@
 import Reveal from "@/components/motion/Reveal";
-import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
+import { site } from "@/lib/site";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 const services = [
   { name: "Venda e troca de pneus", desc: "Novos e seminovos para carro, moto e caminhão, montados na hora." },
@@ -22,14 +23,12 @@ const ServicesSection = () => (
         <h2 id="t-serv" className="m-0 font-placa text-[clamp(56px,7vw,96px)] font-normal uppercase leading-[0.95]">
           O que a Fênix faz
         </h2>
-        <a
-          href={whatsappUrl(whatsappMessages.geral)}
-          target="_blank"
-          rel="noopener noreferrer"
+        <ContatoButton
+          acao="whatsapp"
           className="push flex min-h-[60px] items-center rounded-[10px] border-[3px] border-background bg-fire-yellow px-[26px] font-placa text-2xl uppercase tracking-[0.03em] text-background shadow-[4px_4px_0_hsl(var(--background))]"
         >
           Chamar no WhatsApp
-        </a>
+        </ContatoButton>
       </div>
 
       <Reveal stagger={0.07}>

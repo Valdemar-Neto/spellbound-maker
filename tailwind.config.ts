@@ -67,6 +67,9 @@ export default {
         },
         surface: "hsl(var(--surface))",
         "status-open": "hsl(var(--status-open))",
+        error: "hsl(var(--error))",
+        placeholder: "hsl(var(--placeholder))",
+        "whatsapp-bubble": "hsl(var(--whatsapp-bubble))",
         paper: {
           DEFAULT: "hsl(var(--paper))",
           muted: "hsl(var(--paper-muted))",

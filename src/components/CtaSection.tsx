@@ -1,5 +1,5 @@
 import Reveal from "@/components/motion/Reveal";
-import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 const CtaSection = () => (
   <section aria-labelledby="t-cta" className="bg-fire-orange text-background">
@@ -15,20 +15,18 @@ const CtaSection = () => (
         Pneu careca ou furado? Fala com a Fênix.
       </h2>
       <div data-reveal className="flex flex-wrap gap-3">
-        <a
-          href={whatsappUrl(whatsappMessages.geral)}
-          target="_blank"
-          rel="noopener noreferrer"
+        <ContatoButton
+          acao="whatsapp"
           className="press flex min-h-14 items-center rounded-full bg-background px-[26px] font-bold text-white"
         >
           Chamar no WhatsApp
-        </a>
-        <a
-          href={site.phoneHref}
+        </ContatoButton>
+        <ContatoButton
+          acao="ligar"
           className="press flex min-h-14 items-center rounded-full border-2 border-background px-6 font-bold"
         >
           Ligar agora
-        </a>
+        </ContatoButton>
       </div>
     </Reveal>
   </section>

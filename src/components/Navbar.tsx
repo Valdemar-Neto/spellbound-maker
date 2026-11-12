@@ -1,5 +1,6 @@
 import { FenixMark, WhatsAppIcon } from "@/components/brand";
-import { navLinks, site, whatsappMessages, whatsappUrl } from "@/lib/site";
+import { site, navLinks } from "@/lib/site";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 const Navbar = () => (
   <header className="border-b border-border bg-background">
@@ -25,18 +26,19 @@ const Navbar = () => (
       </nav>
 
       <div className="ml-auto flex items-center gap-3">
-        <a href={site.phoneHref} className="hidden text-[15px] font-semibold text-foreground md:inline">
-          {site.displayPhone}
-        </a>
-        <a
-          href={whatsappUrl(whatsappMessages.geral)}
-          target="_blank"
-          rel="noopener noreferrer"
+        <ContatoButton
+          acao="ligar"
+          className="hidden min-h-11 text-[15px] font-semibold text-foreground md:inline-flex md:items-center"
+        >
+          Ligar
+        </ContatoButton>
+        <ContatoButton
+          acao="whatsapp"
           className="press flex min-h-11 items-center gap-2 rounded-full bg-fire-orange px-[18px] text-[15px] font-bold text-background"
         >
           <WhatsAppIcon className="h-[18px] w-[18px]" />
           WhatsApp
-        </a>
+        </ContatoButton>
       </div>
     </div>
   </header>

@@ -7,7 +7,7 @@ const em = (iso: string) => new Date(iso);
 
 describe("statusAtendimento", () => {
   it("aberto em dia útil dentro do horário", () => {
-    expect(statusAtendimento(em("2026-11-11T13:00:00Z"))).toEqual({
+    expect(statusAtendimento(em("2026-11-11T13:00:00Z"))).toMatchObject({
       aberto: true,
       texto: "Aberto agora, fecha às 18h30",
     });

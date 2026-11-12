@@ -58,6 +58,9 @@
     --line-strong: 24 16% 25%; /* #4A3E36 */
     --surface: 22 19% 11%; /* #221B17 faixa/campo um tom acima do fundo */
     --status-open: 147 69% 55%; /* #3DDC84 "Aberto agora" */
+    --error: 17 100% 73%; /* #FF9B73 campo com erro */
+    --placeholder: 26 12% 49%; /* #8C7B6E */
+    --whatsapp-bubble: 169 100% 18%; /* #005C4B balão de mensagem enviada */
     --paper: 0 0% 100%;
     --paper-muted: 23 11% 33%; /* #5E534C */
 
@@ -125,13 +128,12 @@
     }
   }
 
-  /* Seletor de medida: <select> nativo com tipografia de display */
-  .medida-select {
+  /* <select> nativo sem a seta do sistema, opções no tema escuro */
+  select {
     -webkit-appearance: none;
     appearance: none;
-    transition: border-color 150ms ease;
   }
-  .medida-select option {
+  select option {
     font: 600 18px "Instrument Sans", sans-serif;
     background: hsl(var(--background));
     color: hsl(var(--foreground));

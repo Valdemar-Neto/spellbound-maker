@@ -1,8 +1,9 @@
 import { Camera } from "lucide-react";
 import { WhatsAppIcon } from "@/components/brand";
 import { AROS, formatMedida, LARGURAS, PERFIS, textoFaltando, type Medida } from "@/lib/medida";
-import { whatsappMessages, whatsappUrl } from "@/lib/site";
+import { whatsappMessages } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import ContatoButton from "@/components/contato/ContatoButton";
 
 interface CampoProps {
   label: string;
@@ -21,7 +22,7 @@ const Campo = ({ label, value, options, onChange, format = (o) => o, accent }: C
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className={cn(
-        "medida-select min-h-[84px] w-full cursor-pointer rounded-[14px] border-2 bg-surface hover:border-ink-dim px-3.5 font-display text-5xl font-extrabold max-md:min-h-[72px] max-md:px-2 max-md:text-[38px]",
+        "min-h-[84px] w-full cursor-pointer rounded-[14px] border-2 bg-surface hover:border-ink-dim px-3.5 font-display text-5xl font-extrabold max-md:min-h-[72px] max-md:px-2 max-md:text-[38px]",
         value ? "border-fire-orange" : "border-border",
         accent ? "text-fire-orange" : "text-foreground",
       )}
@@ -52,7 +53,11 @@ const DiagramaMedida = () => {
     fontWeight: 600,
     fill: "hsl(var(--foreground))",
   };
-  const chave = { fill: "none", stroke: "hsl(var(--fire-orange))", strokeWidth: 3 };
+  const chave = {
+    fill: "none",
+    stroke: "hsl(var(--fire-orange))",
+    strokeWidth: 3,
+  };
 
   return (
     <figure className="m-0 flex flex-col gap-2.5">
@@ -110,8 +115,8 @@ const PneusSection = ({ medida, onChange }: PneusSectionProps) => {
             Procurando pneu?
           </h2>
           <p className="m-0 max-w-[25em] text-[19px] text-ink-soft">
-            Escolha a medida e pergunte direto no WhatsApp se tem novo ou seminovo. Ela está escrita na lateral do
-            pneu, assim:
+            Escolha a medida e pergunte direto no WhatsApp se tem novo ou seminovo. Ela está escrita na lateral do pneu,
+            assim:
           </p>
           <DiagramaMedida />
         </div>
@@ -124,27 +129,19 @@ const PneusSection = ({ medida, onChange }: PneusSectionProps) => {
           <div className="grid grid-cols-3 gap-3">
             <Campo label="Largura" value={medida.largura} options={LARGURAS} onChange={set("largura")} />
             <Campo label="Perfil" value={medida.perfil} options={PERFIS} onChange={set("perfil")} />
-            <Campo
-              label="Aro"
-              value={medida.aro}
-              options={AROS}
-              onChange={set("aro")}
-              format={(o) => `R${o}`}
-              accent
-            />
+            <Campo label="Aro" value={medida.aro} options={AROS} onChange={set("aro")} format={(o) => `R${o}`} accent />
           </div>
 
           <div aria-live="polite">
             {completa ? (
-              <a
-                href={whatsappUrl(whatsappMessages.medida(completa))}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContatoButton
+                acao="whatsapp"
+                mensagem={whatsappMessages.medida(completa)}
                 className="press flex min-h-[60px] items-center justify-center gap-2.5 rounded-full bg-fire-orange px-6 text-lg font-bold text-background"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 Perguntar se tem {completa}
-              </a>
+              </ContatoButton>
             ) : (
               <p className="m-0 flex min-h-[60px] items-center justify-center rounded-full border-2 border-dashed border-line-strong px-6 text-center text-base font-semibold text-muted-foreground">
                 {textoFaltando(medida)}
@@ -158,15 +155,14 @@ const PneusSection = ({ medida, onChange }: PneusSectionProps) => {
             <span aria-hidden="true" className="h-px flex-1 bg-border" />
           </div>
 
-          <a
-            href={whatsappUrl(whatsappMessages.foto)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ContatoButton
+            acao="whatsapp"
+            mensagem={whatsappMessages.foto}
             className="press lift flex min-h-14 items-center justify-center gap-2.5 rounded-full border-2 border-line-strong px-[22px] text-[17px] font-semibold text-foreground"
           >
             <Camera className="h-5 w-5" aria-hidden="true" />
             Mandar foto da lateral do pneu
-          </a>
+          </ContatoButton>
         </form>
       </div>
     </section>
