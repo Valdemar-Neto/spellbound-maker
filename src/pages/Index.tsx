@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import HighlightsStrip from "@/components/HighlightsStrip";
 import PneusSection from "@/components/PneusSection";
 import ServicesSection from "@/components/ServicesSection";
+import ParceirosSection from "@/components/ParceirosSection";
 import SeminovosSection from "@/components/SeminovosSection";
 import MensagemSection from "@/components/MensagemSection";
 import LocationSection from "@/components/LocationSection";
@@ -28,6 +29,7 @@ const Index = () => {
           <HighlightsStrip />
           <PneusSection medida={medida} onChange={setMedida} />
           <ServicesSection />
+          <ParceirosSection />
           <SeminovosSection />
           <MensagemSection medidaBusca={formatMedida(medida) ?? ""} />
           <LocationSection />

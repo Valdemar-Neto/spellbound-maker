@@ -183,6 +183,22 @@
     }
   }
 
+  /* Faixa de logos das empresas parceiras: rola sem parar, pausa no hover/foco */
+  .marquee-track {
+    animation: marquee 36s linear infinite;
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
   /* Pulso do pino no mapa */
   .map-pulse {
     transform-box: fill-box;
@@ -208,6 +224,16 @@
     }
     .map-pulse {
       animation: none;
+    }
+    /* Sem rolagem automática: uma cópia só, rolável com o dedo/trackpad */
+    .marquee-track {
+      animation: none;
+    }
+    .marquee {
+      overflow-x: auto;
+    }
+    .marquee-copia {
+      display: none;
     }
   }
 }

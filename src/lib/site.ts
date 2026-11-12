@@ -47,7 +47,19 @@ export const whatsappMessages = {
   medida: (medida: string) => `Olá! Vim pelo site. Vocês têm pneu ${medida}?`,
   seminovos: "Olá! Quero ver fotos dos seminovos.",
   foto: "Olá! Vim pelo site. Não sei a medida do meu pneu, vou mandar uma foto da lateral.",
+  empresa: "Olá! Vim pelo site. Quero atendimento da Fênix para a frota da minha empresa.",
 };
+
+// Empresas atendidas pela Fênix (B2B). Logos em public/partners.
+export const parceiros = [
+  { id: "agronor", nome: "Agronor Alimentos", arquivo: "agronor_alimentos_logo.jpeg" },
+  { id: "engecom", nome: "Engecom Engenharia", arquivo: "engecomengenharia_logo.jpeg" },
+  { id: "sucena", nome: "Sucena Empreendimentos", arquivo: "logo-sucena.png" },
+  { id: "lokar", nome: "Lokar", arquivo: "lokar.png" },
+  { id: "lucena", nome: "Lucena Infraestrutura", arquivo: "lucena.webp" },
+  { id: "madri", nome: "Madri Logística", arquivo: "matrid-logistica.png" },
+  { id: "cgb", nome: "CGB", arquivo: "cgb.jpg" },
+] as const;
 
 export const navLinks = [
   { href: "#pneus", label: "Pneus" },
