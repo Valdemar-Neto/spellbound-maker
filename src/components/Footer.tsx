@@ -1,51 +1,26 @@
-import { Flame } from "lucide-react";
-import { navLinks } from "@/lib/site";
-import { scrollToHash } from "@/lib/gsap";
+import { site } from "@/lib/site";
 
-const Footer = () => {
-  return (
-    <footer className="border-t border-border bg-dark-surface">
-      <div className="container px-4 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Flame className="w-8 h-8 text-fire-orange" />
-            <span className="font-display text-2xl font-bold uppercase gradient-fire-text">
-              Fênix Borracharia
-            </span>
-          </div>
-
-          {/* Links */}
-          <nav className="flex flex-wrap justify-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToHash(link.href);
-                }}
-                className="font-body text-sm text-muted-foreground hover:text-fire-orange transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Copyright */}
-          <p className="font-body text-sm text-muted-foreground">
-            ✦ Deus é Fiel ✦
-          </p>
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-border text-center">
-          <p className="font-display text-lg text-fire-orange tracking-wider">
-            © {new Date().getFullYear()} Lumen Tech by Valdemar
-          </p>
-        </div>
+const Footer = () => (
+  <footer className="border-t border-border">
+    <div className="mx-auto flex max-w-[1200px] flex-wrap justify-between gap-6 px-6 pb-24 pt-10 text-[15px] text-muted-foreground">
+      <div className="flex flex-col gap-1.5">
+        <span className="font-display text-[30px] font-extrabold text-foreground">{site.motto}</span>
+        <span>
+          {site.brand} {site.tagline}
+        </span>
+        <span>
+          {site.address.street}, {site.address.district}, {site.address.city}, CEP {site.address.cep}
+        </span>
       </div>
-    </footer>
-  );
-};
+      <div className="flex flex-col gap-1.5">
+        <a href={site.phoneHref} className="link">
+          {site.displayPhone}
+        </a>
+        <span>{site.hours}</span>
+        <span>Site por Lumen Tech</span>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

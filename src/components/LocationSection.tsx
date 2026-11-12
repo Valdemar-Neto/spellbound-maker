@@ -1,65 +1,54 @@
-import { MapPin, Clock, Phone, Navigation } from "lucide-react";
 import DotMap from "@/components/map/DotMap";
-import SectionHeading from "@/components/SectionHeading";
-import Reveal from "@/components/motion/Reveal";
-import { site } from "@/lib/site";
+import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
 
-const details = [
-  { icon: MapPin, title: "Endereço", lines: [site.address.street, site.address.city] },
-  { icon: Clock, title: "Horário de funcionamento", lines: [site.hours] },
-  { icon: Phone, title: "Telefone", lines: [`${site.displayPhone} (ligação e WhatsApp)`] },
-];
-
-const LocationSection = () => {
-  return (
-    <section id="localizacao" className="py-20 md:py-28 overflow-hidden">
-      <div className="container px-4">
-        <SectionHeading eyebrow="Onde estamos" title="Nossa localização" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
-          <DotMap className="w-full aspect-square max-h-[640px]" />
-
-          <Reveal className="flex flex-col gap-8">
-            {details.map((item) => (
-              <div key={item.title} data-reveal className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg gradient-fire flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold uppercase text-foreground mb-1">{item.title}</h3>
-                  {item.lines.map((line) => (
-                    <p key={line} className="font-body text-muted-foreground">
-                      {line}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ))}
-
-            <div data-reveal className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href={site.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="press inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-display uppercase tracking-wider gradient-fire text-primary-foreground"
-              >
-                <Navigation className="w-4 h-4" />
-                Traçar rota
-              </a>
-              <a
-                href={site.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="press inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-display uppercase tracking-wider border border-border text-foreground hover:border-primary transition-colors duration-200"
-              >
-                Abrir no Google Maps
-              </a>
-            </div>
-          </Reveal>
+const LocationSection = () => (
+  <section id="onde" aria-labelledby="t-onde" className="theme-paper bg-background text-foreground">
+    <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-10 px-6 py-[88px]">
+      <div className="flex flex-[1_1_360px] flex-col gap-5">
+        <h2 id="t-onde" className="m-0 text-base font-semibold text-muted-foreground">
+          Como chegar
+        </h2>
+        <address className="font-display text-[clamp(52px,6.4vw,88px)] font-extrabold not-italic leading-[0.92]">
+          {site.address.street}, {site.address.district}
+        </address>
+        <span className="text-[17px] text-muted-foreground">
+          {site.address.city}, CEP {site.address.cep}
+        </span>
+        <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 text-base">
+          <dt className="text-muted-foreground">Horário</dt>
+          <dd className="m-0 font-semibold">{site.hours}</dd>
+          <dt className="text-muted-foreground">Telefone</dt>
+          <dd className="m-0 font-semibold">
+            <a href={site.phoneHref} className="underline underline-offset-2">
+              {site.displayPhone}
+            </a>
+          </dd>
+        </dl>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={site.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="press flex min-h-[52px] items-center rounded-full bg-foreground px-[22px] font-bold text-background"
+          >
+            Abrir no Google Maps
+          </a>
+          <a
+            href={whatsappUrl(whatsappMessages.geral)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="press flex min-h-[52px] items-center rounded-full border-2 border-foreground px-[22px] font-semibold"
+          >
+            Pedir a localização
+          </a>
         </div>
       </div>
-    </section>
-  );
-};
+
+      <div className="flex-[1.4_1_460px]">
+        <DotMap className="mx-auto aspect-square w-full max-h-[560px]" />
+      </div>
+    </div>
+  </section>
+);
 
 export default LocationSection;

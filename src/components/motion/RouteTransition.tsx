@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { gsap, useGSAP, prefersReducedMotion, EASE_IN_OUT } from "@/lib/gsap";
 
-/** Cortina em gradiente de fogo que se recolhe ao trocar de rota. */
+/** Cortina laranja que se recolhe ao trocar de rota. */
 const RouteTransition = () => {
   const { pathname } = useLocation();
   const curtain = useRef<HTMLDivElement>(null);
@@ -29,7 +29,7 @@ const RouteTransition = () => {
     <div
       ref={curtain}
       aria-hidden="true"
-      className="fixed inset-0 z-[100] gradient-fire pointer-events-none"
+      className="fixed inset-0 z-[100] bg-fire-orange pointer-events-none"
       style={{ transform: "scaleY(0)" }}
     />
   );

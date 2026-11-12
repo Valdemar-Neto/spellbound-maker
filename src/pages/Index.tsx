@@ -1,27 +1,29 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import HighlightsStrip from "@/components/HighlightsStrip";
 import ServicesSection from "@/components/ServicesSection";
-import DifferentialsSection from "@/components/DifferentialsSection";
-import AboutSection from "@/components/AboutSection";
+import SeminovosSection from "@/components/SeminovosSection";
 import LocationSection from "@/components/LocationSection";
-import ContactSection from "@/components/ContactSection";
+import FaqSection from "@/components/FaqSection";
+import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import MobileContactBar from "@/components/MobileContactBar";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+const Index = () => (
+  <div className="flex min-h-screen flex-col bg-background">
+    <Navbar />
+    <main id="inicio">
       <HeroSection />
+      <HighlightsStrip />
       <ServicesSection />
-      <DifferentialsSection />
-      <AboutSection />
+      <SeminovosSection />
       <LocationSection />
-      <ContactSection />
-      <Footer />
-      <WhatsAppFloat />
-    </div>
-  );
-};
+      <FaqSection />
+      <CtaSection />
+    </main>
+    <Footer />
+    <MobileContactBar />
+  </div>
+);
 
 export default Index;

@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Oswald", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        display: ['"Big Shoulders Display"', '"Arial Narrow"', "sans-serif"],
+        body: ['"Instrument Sans"', "system-ui", "sans-serif"],
+        placa: ["Anton", "Impact", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -55,10 +56,18 @@ export default {
           red: "hsl(var(--fire-red))",
           orange: "hsl(var(--fire-orange))",
           yellow: "hsl(var(--fire-yellow))",
+          link: "hsl(var(--fire-link))",
         },
-        dark: {
-          surface: "hsl(var(--dark-surface))",
-          elevated: "hsl(var(--dark-elevated))",
+        ink: {
+          soft: "hsl(var(--ink-soft))",
+          dim: "hsl(var(--ink-dim))",
+        },
+        line: {
+          strong: "hsl(var(--line-strong))",
+        },
+        paper: {
+          DEFAULT: "hsl(var(--paper))",
+          muted: "hsl(var(--paper-muted))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

@@ -1,15 +1,19 @@
 // Dados do negócio usados em todo o site.
 export const site = {
   name: "Fênix Borracharia",
+  brand: "Fênix",
+  tagline: "Pneus e Borracharia",
+  motto: "Deus é Fiel",
   whatsappNumber: "5598981796941",
   phoneHref: "tel:+5598981796941",
   displayPhone: "(98) 98179-6941",
   address: {
-    street: "Av. Castelo Branco, 1901 — Sabbak",
-    city: "Santa Inês - MA, CEP 65300-550",
+    street: "Av. Castelo Branco, 1901",
+    district: "Sabbak",
+    city: "Santa Inês-MA",
+    cep: "65300-550",
   },
-  hours: "Segunda a Sábado: 7h20 às 18h30",
-  yearsOfExperience: 8,
+  hours: "Segunda a sábado, 7h20 às 18h30",
   // [longitude, latitude]
   coordinates: [-45.3942, -3.6623] as [number, number],
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=F%C3%AAnix%20Pneus%20Santa%20In%C3%AAs",
@@ -19,10 +23,16 @@ export const site = {
 export const whatsappUrl = (text: string) =>
   `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
 
+// Mensagens pré-preenchidas do WhatsApp, uma por intenção.
+export const whatsappMessages = {
+  geral: "Olá! Vim pelo site da Fênix.",
+  medida: (medida: string) => `Olá! Vim pelo site. Vocês têm pneu ${medida}?`,
+  seminovos: "Olá! Quero ver fotos dos seminovos.",
+};
+
 export const navLinks = [
-  { href: "#inicio", label: "Início" },
+  { href: "#pneus", label: "Pneus" },
   { href: "#servicos", label: "Serviços" },
-  { href: "#sobre", label: "Sobre" },
-  { href: "#localizacao", label: "Localização" },
-  { href: "#contato", label: "Contato" },
+  { href: "#onde", label: "Como chegar" },
+  { href: "#duvidas", label: "Dúvidas" },
 ];

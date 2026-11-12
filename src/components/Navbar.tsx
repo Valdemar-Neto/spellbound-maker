@@ -1,132 +1,45 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import { Flame, Menu, X } from "lucide-react";
-import { ScrollTrigger, scrollToHash } from "@/lib/gsap";
-import { navLinks } from "@/lib/site";
-import { cn } from "@/lib/utils";
+import { FenixMark, WhatsAppIcon } from "@/components/brand";
+import { navLinks, site, whatsappMessages, whatsappUrl } from "@/lib/site";
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState(navLinks[0].href);
-  const [indicator, setIndicator] = useState({ x: 0, width: 0 });
-  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+const Navbar = () => (
+  <header className="border-b border-border bg-background">
+    <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-3 px-4 py-3.5 md:gap-6 md:px-6">
+      <a href="#inicio" className="flex items-center gap-3 text-foreground">
+        <FenixMark className="h-10 w-10 text-fire-orange" role="img" aria-label={`Fênix ${site.tagline}`} />
+        <span className="flex flex-col leading-none">
+          <span className="font-display text-[28px] font-extrabold tracking-[0.5px]">{site.brand}</span>
+          <span className="text-[13px] text-muted-foreground">{site.tagline}</span>
+        </span>
+      </a>
 
-  useLayoutEffect(() => {
-    const triggers = [
-      ScrollTrigger.create({ start: 50, end: "max", onToggle: (self) => setScrolled(self.isActive) }),
-      ...navLinks.map(({ href }) =>
-        ScrollTrigger.create({
-          trigger: href,
-          start: "top center",
-          end: "bottom center",
-          onToggle: (self) => self.isActive && setActive(href),
-        }),
-      ),
-    ];
-    return () => triggers.forEach((t) => t.kill());
-  }, []);
+      <nav aria-label="Seções" className="ml-4 hidden gap-1 md:flex">
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="rounded-full px-3 py-2.5 text-[15px] font-medium text-foreground transition-colors duration-150 hover:text-fire-link"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
 
-  useLayoutEffect(() => {
-    const el = linkRefs.current[active];
-    if (el) setIndicator({ x: el.offsetLeft, width: el.offsetWidth });
-  }, [active]);
-
-  const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMenuOpen(false);
-    scrollToHash(href);
-  };
-
-  return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-300",
-        scrolled || menuOpen
-          ? "bg-background/90 backdrop-blur-md border-b border-border shadow-lg"
-          : "bg-transparent border-b border-transparent",
-      )}
-    >
-      <div className="container px-4 flex items-center justify-between h-16 md:h-20">
-        <a href="#inicio" onClick={(e) => go(e, "#inicio")} className="flex items-center gap-2">
-          <Flame className="w-7 h-7 text-fire-orange" />
-          <span className="font-display text-xl font-bold uppercase gradient-fire-text">Fênix Borracharia</span>
+      <div className="ml-auto flex items-center gap-3">
+        <a href={site.phoneHref} className="hidden text-[15px] font-semibold text-foreground md:inline">
+          {site.displayPhone}
         </a>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex relative items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              ref={(el) => (linkRefs.current[link.href] = el)}
-              href={link.href}
-              onClick={(e) => go(e, link.href)}
-              aria-current={active === link.href ? "true" : undefined}
-              className={cn(
-                "font-display text-sm uppercase tracking-wider py-2 transition-colors duration-200",
-                active === link.href ? "text-foreground" : "text-muted-foreground hover:text-fire-orange",
-              )}
-            >
-              {link.label}
-            </a>
-          ))}
-          <span
-            aria-hidden="true"
-            className="absolute bottom-0 left-0 h-0.5 rounded-full gradient-fire transition-[transform,width] duration-300 [transition-timing-function:var(--ease-out)]"
-            style={{ width: indicator.width, transform: `translateX(${indicator.x}px)` }}
-          />
-        </nav>
-
         <a
-          href="#contato"
-          onClick={(e) => go(e, "#contato")}
-          className="press hidden md:inline-flex px-6 py-2.5 rounded-lg font-display text-sm uppercase tracking-wider gradient-fire text-primary-foreground"
+          href={whatsappUrl(whatsappMessages.geral)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="press flex min-h-11 items-center gap-2 rounded-full bg-fire-orange px-[18px] text-[15px] font-bold text-background"
         >
-          Orçamento
+          <WhatsAppIcon className="h-[18px] w-[18px]" />
+          WhatsApp
         </a>
-
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
-
-      {/* Mobile menu: grid-rows anima a altura sem medir o conteúdo */}
-      <div
-        className={cn(
-          "md:hidden grid transition-[grid-template-rows,opacity] duration-300 [transition-timing-function:var(--ease-out)]",
-          menuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none",
-        )}
-      >
-        <nav className="overflow-hidden" aria-hidden={!menuOpen}>
-          <div className="container px-4 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => go(e, link.href)}
-                tabIndex={menuOpen ? undefined : -1}
-                className="font-display text-sm uppercase tracking-wider text-muted-foreground hover:text-fire-orange transition-colors py-2"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contato"
-              onClick={(e) => go(e, "#contato")}
-              tabIndex={menuOpen ? undefined : -1}
-              className="press inline-flex justify-center px-6 py-3 rounded-lg font-display text-sm uppercase tracking-wider gradient-fire text-primary-foreground"
-            >
-              Orçamento
-            </a>
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
-};
+    </div>
+  </header>
+);
 
 export default Navbar;
