@@ -1,60 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Paleta "Combinada": asfalto quente + laranja Fênix, com a seção de serviços
+ * em vermelho/amarelo de placa de beira de estrada e "Como chegar" em branco.
+ */
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
+    --background: 23 21% 7%; /* #17120F asfalto */
+    --foreground: 30 40% 94%; /* #F6F0EA */
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 95%;
+    --card: 23 18% 14%; /* #2B231E */
+    --card-foreground: 30 40% 94%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 23 18% 14%;
+    --popover-foreground: 30 40% 94%;
 
-    --primary: 0 85% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 18 100% 58%; /* #FF6A2B laranja Fênix */
+    --primary-foreground: 23 21% 7%;
 
-    --secondary: 25 95% 53%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 23 18% 14%;
+    --secondary-foreground: 30 40% 94%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 23 16% 20%;
+    --muted-foreground: 27 13% 70%; /* #BDB2A9 */
 
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 18 100% 58%;
+    --accent-foreground: 23 21% 7%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 5 80% 47%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 85% 50%;
+    --border: 23 16% 20%; /* #3A302A */
+    --input: 24 16% 25%; /* #4A3E36 */
+    --ring: 18 100% 58%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 7%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 85% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 0 85% 50%;
+    --sidebar-background: 23 21% 7%;
+    --sidebar-foreground: 30 40% 94%;
+    --sidebar-primary: 18 100% 58%;
+    --sidebar-primary-foreground: 23 21% 7%;
+    --sidebar-accent: 23 18% 14%;
+    --sidebar-accent-foreground: 30 40% 94%;
+    --sidebar-border: 23 16% 20%;
+    --sidebar-ring: 18 100% 58%;
 
-    /* Custom tokens */
-    --fire-red: 0 85% 50%;
-    --fire-orange: 25 95% 53%;
-    --fire-yellow: 40 100% 60%;
-    --dark-surface: 0 0% 7%;
-    --dark-elevated: 0 0% 12%;
+    /* Tokens da marca */
+    --fire-red: 5 80% 47%; /* #D62718 vermelho placa */
+    --fire-orange: 18 100% 58%; /* #FF6A2B */
+    --fire-yellow: 50 100% 52%; /* #FFD60A amarelo placa */
+    --fire-link: 18 100% 67%; /* #FF8A57 */
+    --fire-link-hover: 19 100% 77%; /* #FFB08C */
+    --ink-soft: 27 19% 82%; /* #D9CFC7 texto de apoio */
+    --ink-dim: 25 13% 37%; /* #6B5D53 */
+    --line-strong: 24 16% 25%; /* #4A3E36 */
+    --paper: 0 0% 100%;
+    --paper-muted: 23 11% 33%; /* #5E534C */
 
     /* Motion (Emil Kowalski) */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  /* Seção clara: redefine os tokens para que componentes (ex.: DotMap) se adaptem sozinhos. */
+  .theme-paper {
+    --background: 0 0% 100%;
+    --foreground: 23 21% 7%;
+    --card: 27 25% 92%; /* #EFE9E4 */
+    --muted-foreground: 23 11% 33%;
+    --border: 27 25% 85%;
+    --ring: 15 75% 40%;
+    --fire-yellow: 15 75% 40%; /* #B3401A: arcos do mapa legíveis no branco */
   }
 }
 
@@ -65,14 +83,25 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    font-size: 17px;
+    line-height: 1.55;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Oswald', sans-serif;
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -82,71 +111,70 @@
   }
 }
 
+@layer components {
+  /* Link padrão sobre fundo escuro */
+  .link {
+    color: hsl(var(--fire-link));
+    transition: color 150ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      color: hsl(var(--fire-link-hover));
+    }
+  }
+
+  /* Seletor de medida: <select> nativo com tipografia de display */
+  .medida-select {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .medida-select option {
+    font: 600 18px "Instrument Sans", sans-serif;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* FAQ com <details> nativo */
+  .faq summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-icon {
+    transition: transform 200ms var(--ease-out);
+  }
+  .faq[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+}
+
 @layer utilities {
-  .font-display {
-    font-family: 'Oswald', sans-serif;
-  }
-
-  .font-body {
-    font-family: 'Inter', sans-serif;
-  }
-
-  .gradient-fire {
-    background: linear-gradient(135deg, hsl(0 85% 50%), hsl(25 95% 53%), hsl(40 100% 60%));
-  }
-
-  .gradient-fire-text {
-    background: linear-gradient(135deg, hsl(0 85% 50%), hsl(25 95% 53%), hsl(40 100% 60%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .text-shadow-fire {
-    text-shadow: 0 0 40px hsl(25 95% 53% / 0.5), 0 0 80px hsl(0 85% 50% / 0.3);
-  }
-
-  .shadow-fire {
-    box-shadow: 0 0 30px hsl(0 85% 50% / 0.3), 0 4px 20px hsl(0 0% 0% / 0.5);
-  }
-
-  .shadow-fire-lg {
-    box-shadow: 0 0 50px hsl(0 85% 50% / 0.4), 0 8px 40px hsl(0 0% 0% / 0.6);
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px hsl(0 85% 50% / 0.4); }
-    50% { box-shadow: 0 0 40px hsl(25 95% 53% / 0.6), 0 0 60px hsl(0 85% 50% / 0.3); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
   /* Feedback de toque em botões/CTAs */
   .press {
-    transition: transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease;
+    transition: transform 120ms var(--ease-out);
   }
   .press:active {
     transform: scale(0.97);
   }
 
-  /* Hover com movimento só em ponteiros finos (evita hover falso no toque) */
+  /* Botão "placa": afunda na sombra dura ao pressionar */
+  .push {
+    transition: transform 100ms ease-out, box-shadow 100ms ease-out;
+  }
+  .push:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 hsl(var(--background)) !important;
+  }
+
+  /* Hover só em ponteiros finos (evita hover falso no toque) */
   @media (hover: hover) and (pointer: fine) {
     .lift {
-      transition: transform 200ms var(--ease-out), border-color 200ms ease, box-shadow 200ms ease;
+      transition: transform 120ms var(--ease-out), background-color 150ms ease;
     }
     .lift:hover {
-      transform: translateY(-4px);
+      background-color: hsl(var(--card));
     }
   }
 
@@ -163,9 +191,17 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .map-pulse,
-    .animate-pulse-glow,
-    .animate-float {
+    .press,
+    .push,
+    .lift,
+    .faq-icon {
+      transition: none;
+    }
+    .press:active,
+    .push:active {
+      transform: none;
+    }
+    .map-pulse {
       animation: none;
     }
   }
