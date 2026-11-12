@@ -80,7 +80,7 @@ const Tire = ({ medida, reducedMotion, drag, onReady }: TireProps) => {
       c.width = TEXTURE_WIDTH;
       c.height = TEXTURE_HEIGHT;
     }
-    drawTireTextures(colorCanvas, bumpCanvas, "175/70 R14", regions);
+    drawTireTextures(colorCanvas, bumpCanvas, "", regions);
     const map = new THREE.CanvasTexture(colorCanvas);
     const bumpMap = new THREE.CanvasTexture(bumpCanvas);
     map.colorSpace = THREE.SRGBColorSpace;
@@ -203,7 +203,7 @@ interface HeroSceneProps {
   onReady: () => void;
 }
 
-/** Pneu 3D com a medida escolhida escrita na lateral. Arrastar gira; pausa fora da viewport. */
+/** Pneu 3D com a medida escolhida (ou "SANTA INÊS-MA") escrita na lateral. Arrastar gira; pausa fora da viewport. */
 const HeroScene = ({ medida, reducedMotion, onReady }: HeroSceneProps) => {
   const wrapper = useRef<HTMLDivElement>(null);
   const drag = useRef<DragState>({ active: false, lastX: 0, velocity: 0, yaw: REST_YAW });
@@ -225,7 +225,7 @@ const HeroScene = ({ medida, reducedMotion, onReady }: HeroSceneProps) => {
     <div
       ref={wrapper}
       role="img"
-      aria-label={`Pneu em 3D com a medida ${medida} escrita na lateral. Arraste para girar.`}
+      aria-label={`Pneu em 3D com FÊNIX PNEUS, ${medida} e DEUS É FIEL escritos na lateral. Arraste para girar.`}
       className="absolute inset-0 cursor-grab touch-pan-y active:cursor-grabbing"
       onPointerDown={(e) => {
         drag.current.active = true;

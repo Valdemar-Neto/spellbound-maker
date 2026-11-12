@@ -65,6 +65,8 @@ export default {
         line: {
           strong: "hsl(var(--line-strong))",
         },
+        surface: "hsl(var(--surface))",
+        "status-open": "hsl(var(--status-open))",
         paper: {
           DEFAULT: "hsl(var(--paper))",
           muted: "hsl(var(--paper-muted))",

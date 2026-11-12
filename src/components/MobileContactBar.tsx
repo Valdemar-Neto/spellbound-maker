@@ -1,6 +1,6 @@
 import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
 
-/** Barra fixa de contato no celular: ligar e WhatsApp sempre ao alcance do polegar. */
+/** Barra fixa de contato no celular: ligar, rota e WhatsApp sempre ao alcance do polegar. */
 const MobileContactBar = () => (
   <nav
     aria-label="Contato rápido"
@@ -11,6 +11,14 @@ const MobileContactBar = () => (
       className="press flex min-h-[52px] flex-1 items-center justify-center rounded-[14px] border-2 border-line-strong font-bold text-foreground"
     >
       Ligar
+    </a>
+    <a
+      href={site.directionsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="press flex min-h-[52px] flex-1 items-center justify-center rounded-[14px] border-2 border-line-strong font-bold text-foreground"
+    >
+      Rota
     </a>
     <a
       href={whatsappUrl(whatsappMessages.geral)}

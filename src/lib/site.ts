@@ -14,10 +14,14 @@ export const site = {
     cep: "65300-550",
   },
   hours: "Segunda a sábado, 7h20 às 18h30",
+  // Mesmo horário em dados: dias (0 = domingo) e minutos desde 0h, hora local (UTC-3).
+  openingHours: { dias: [1, 2, 3, 4, 5, 6], abre: 7 * 60 + 20, fecha: 18 * 60 + 30 },
   // [longitude, latitude]
   coordinates: [-45.3942, -3.6623] as [number, number],
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=F%C3%AAnix%20Pneus%20Santa%20In%C3%AAs",
-  directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=-3.6623,-45.3942",
+  directionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    "Av. Castelo Branco, 1901, Sabbak, Santa Inês - MA, 65300-550",
+  )}`,
 };
 
 export const whatsappUrl = (text: string) =>
@@ -28,6 +32,7 @@ export const whatsappMessages = {
   geral: "Olá! Vim pelo site da Fênix.",
   medida: (medida: string) => `Olá! Vim pelo site. Vocês têm pneu ${medida}?`,
   seminovos: "Olá! Quero ver fotos dos seminovos.",
+  foto: "Olá! Vim pelo site. Não sei a medida do meu pneu, vou mandar uma foto da lateral.",
 };
 
 export const navLinks = [

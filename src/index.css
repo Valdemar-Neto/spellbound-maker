@@ -56,6 +56,8 @@
     --ink-soft: 27 19% 82%; /* #D9CFC7 texto de apoio */
     --ink-dim: 25 13% 37%; /* #6B5D53 */
     --line-strong: 24 16% 25%; /* #4A3E36 */
+    --surface: 22 19% 11%; /* #221B17 faixa/campo um tom acima do fundo */
+    --status-open: 147 69% 55%; /* #3DDC84 "Aberto agora" */
     --paper: 0 0% 100%;
     --paper-muted: 23 11% 33%; /* #5E534C */
 
@@ -127,6 +129,7 @@
   .medida-select {
     -webkit-appearance: none;
     appearance: none;
+    transition: border-color 150ms ease;
   }
   .medida-select option {
     font: 600 18px "Instrument Sans", sans-serif;
