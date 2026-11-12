@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const items = [
   { title: "Carro, moto e caminhão", text: "Pneus de passeio, utilitário, moto e carga." },
   { title: "Seminovo avaliado um a um", text: "Sulco, reparos e foto do próprio pneu antes da venda." },
-  { title: "Emergência", text: `Furou no caminho? Ligue para ${site.displayPhone}.` },
+  { title: "Emergência", text: `Furou no caminho? Ligue para ${site.displayPhone}. ${site.deliveryFee}` },
 ];
 
 /** Faixa de resumo logo abaixo do hero: três fatos, separados por fios verticais. */

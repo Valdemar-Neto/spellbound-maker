@@ -9,6 +9,10 @@ const faq = [
     q: "Como descubro a medida do meu pneu?",
     a: "Olhe a lateral do pneu: são três números, como 175/70 R14 (largura, perfil e aro). Se não achar, mande uma foto da lateral pelo WhatsApp que a gente lê para você.",
   },
+  {
+    q: "Vocês fazem delivery?",
+    a: "Sim, com taxa de serviço. Chame no WhatsApp ou ligue para combinar o atendimento e saber o valor.",
+  },
   { q: "Atendem caminhão e moto?", a: "Sim. Trabalhamos com pneus e serviços para carro, moto e caminhão." },
   { q: "Qual o horário?", a: `${site.hours}, na ${site.address.street}, ${site.address.district}.` },
 ];

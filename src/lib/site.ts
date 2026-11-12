@@ -14,6 +14,8 @@ export const site = {
     cep: "65300-550",
   },
   hours: "Segunda a sábado, 7h20 às 18h30",
+  // Atendimento fora da loja (delivery) é cobrado à parte; o valor é combinado no contato.
+  deliveryFee: "O delivery tem taxa de serviço.",
   // Mesmo horário em dados: dias (0 = domingo) e minutos desde 0h, hora local (UTC-3).
   openingHours: { dias: [1, 2, 3, 4, 5, 6], abre: 7 * 60 + 20, fecha: 18 * 60 + 30 },
   // [longitude, latitude]

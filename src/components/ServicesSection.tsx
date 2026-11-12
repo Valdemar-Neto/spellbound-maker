@@ -1,5 +1,5 @@
 import Reveal from "@/components/motion/Reveal";
-import { whatsappMessages, whatsappUrl } from "@/lib/site";
+import { site, whatsappMessages, whatsappUrl } from "@/lib/site";
 
 const services = [
   { name: "Venda e troca de pneus", desc: "Novos e seminovos para carro, moto e caminhão, montados na hora." },
@@ -7,7 +7,7 @@ const services = [
   { name: "Vulcanização", desc: "Para corte que o remendo comum não resolve." },
   { name: "Calibragem", desc: "Pressão certa para o pneu durar mais." },
   { name: "Pneu de caminhão", desc: "Atendimento para veículos pesados e de carga." },
-  { name: "Emergência", desc: "Furou no caminho? Ligue e combine o atendimento." },
+  { name: "Emergência", desc: `Furou no caminho? Ligue e combine o atendimento. ${site.deliveryFee}` },
 ];
 
 /** Serviços no estilo placa de beira de estrada: vermelho, amarelo e letra condensada. */
