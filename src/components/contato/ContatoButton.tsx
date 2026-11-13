@@ -8,7 +8,7 @@ interface ContatoButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   mensagem?: string;
 }
 
-/** Botão de WhatsApp/ligar: abre o painel para escolher entre Flávio e Anna Luzia. */
+/** Botão de WhatsApp/ligar: abre o painel para escolher entre Flávio e Ana. */
 const ContatoButton = ({ acao, mensagem, className, children, ...props }: ContatoButtonProps) => {
   const { abrir } = useContato();
   return (

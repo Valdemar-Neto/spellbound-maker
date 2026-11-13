@@ -31,7 +31,7 @@ export const site = {
 // pessoa escolher entre os dois (ver components/contato). Flávio vem primeiro.
 export const contatos = [
   { id: "flavio", nome: "Flávio Fênix", numero: "5598984701635", telefone: "(98) 98470-1635" },
-  { id: "anna", nome: "Anna Luzia Fênix", numero: "5598981796941", telefone: "(98) 98179-6941" },
+  { id: "ana", nome: "Ana Fênix", numero: "5598981796941", telefone: "(98) 98179-6941" },
 ] as const;
 
 export type Contato = (typeof contatos)[number];

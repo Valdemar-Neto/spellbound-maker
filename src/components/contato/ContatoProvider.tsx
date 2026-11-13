@@ -15,7 +15,7 @@ const textos: Record<AcaoContato, { titulo: string; descricao: string }> = {
 
 /**
  * Painel "Falar com quem?": todo botão de WhatsApp ou de ligar do site abre este
- * painel para a pessoa escolher entre Flávio e Anna Luzia. Bottom sheet no
+ * painel para a pessoa escolher entre Flávio e Ana. Bottom sheet no
  * celular, janela centralizada no desktop (Radix Dialog: foco preso, Esc fecha).
  */
 const ContatoProvider = ({ children }: { children: ReactNode }) => {
