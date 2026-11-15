@@ -1,6 +1,6 @@
 # Fênix Borracharia — site institucional
 
-Landing page de uma borracharia em Santa Inês (MA), publicada em https://fenixborracharia.vercel.app/.
+Landing page de uma borracharia em Santa Inês (MA), publicada em https://www.fenixpneus.com.br/ (o domínio sem www redireciona para ele; o antigo endereço da Vercel, https://fenixborracharia.vercel.app/, continua no ar). O endereço oficial fica em `site.url` (`src/lib/site.ts`) e se repete em `index.html` (canonical e `og:url`), `public/robots.txt` e `public/sitemap.xml`: mudou o domínio, mude nos quatro.
 Stack: Vite + React 18 + TypeScript + Tailwind 3 + shadcn/ui, Three.js (@react-three/fiber v8), GSAP (ScrollTrigger/ScrollTo via @gsap/react), d3-geo + topojson-client.
 
 Comandos: `npm run dev` (porta 8080), `npm test`, `npm run lint`, `npm run build`.

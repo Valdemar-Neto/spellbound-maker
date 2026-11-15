@@ -4,6 +4,8 @@ export const site = {
   brand: "Fênix",
   tagline: "Pneus e Borracharia",
   motto: "Deus é Fiel",
+  // Endereço oficial do site. O domínio sem www redireciona para este (Vercel).
+  url: "https://www.fenixpneus.com.br",
   address: {
     street: "Av. Castelo Branco, 1901",
     district: "Sabbak",
